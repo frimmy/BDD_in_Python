@@ -14,11 +14,16 @@ def step_impl(context):
 	meal_cost.send_keys("30")
 	tip_percentage = br.find_element_by_name("tip_percentage")
 	tip_percentage.send_keys("20")
-	br.find_element_by_name("submit").click()
+	br.find_element_by_id("submit").click()
 
 @then('I should see the results page')
 def step_impl(context):
 	br = context.browser
 	assert br.find_element_by_id('results')
-	
+
+@then('see the valid total and tip percentage on the results page')
+def step_impl(context):
+	assert False
+
+
 
