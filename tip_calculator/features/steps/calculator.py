@@ -23,7 +23,10 @@ def step_impl(context):
 
 @then('see the valid total and tip percentage on the results page')
 def step_impl(context):
-	assert False
+	br = context.browser
+	results = br.find_element_by_id('results')
+	for i in ["meal cost", "tip percentage", "tip due"]:
+		assert i in results
 
 
 

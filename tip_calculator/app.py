@@ -10,9 +10,11 @@ def home():
 	form = CalculatorForm()
 	if request.method == 'POST' and form.validate_on_submit():
 
-		flash('submitted tip calculator fields Meal Cost="' + form.meal_cost.data + '" Tip Percentage="' + form.tip_percentage.data)
+		mealdata = dict(meal_cost=form.meal_cost.data, tip_percentage=form.tip_percentage.data, tip='')
+		flash('submitted tip calculator fields Meal Cost= "' + str(mealdata['meal_cost']) + '" Tip Percentage= "' + str(mealdata['tip_percentage']) +'%"')
 		
-		return redirect(url_for('results'))
+		mealdata['tip'] = calculate_tip(mealdata['meal_cost'],mealdata['tip_percentage'])
+		return render_template('results.html', mealdata=mealdata)
 
 	return render_template('home.html', form = form)
 

@@ -1,4 +1,17 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 {% block content %}
-<div id="results">Here are your results!</div>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+	<ul>
+	    {% for message in messages %}
+	    <li>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %} {% endwith %}
+
+<div id="results">Here are your results!
+    <p>Your total meal cost: ${{ mealdata['meal_cost'] }}</p>
+    <p>Your tip percentage: ${{ mealdata['tip_percentage'] }}</p>
+    <p>Your tip due: ${{ mealdata['tip'] }}</p>
+</div>
 {% endblock %}
