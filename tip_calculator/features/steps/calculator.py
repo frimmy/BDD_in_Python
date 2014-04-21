@@ -25,8 +25,13 @@ def step_impl(context):
 def step_impl(context):
 	br = context.browser
 	results = br.find_element_by_id('results')
-	for i in ["meal cost", "tip percentage", "tip due"]:
-		assert i in results
+	for i in ["meal-cost", "tip-percentage", "tip-result"]:
+		assert br.find_element_by_id(i)
+		
 
-
+@then('see the valid tip on the results page')
+def step_impl(context):
+	br = context.browser.find_element_by_id('tip-result')
+	p = br.text
+	assert "$6.00" in p
 

@@ -25,7 +25,7 @@ def results():
 def calculate_tip(base_cost, tip_percentage):
 
 	tip = float(base_cost) * float(tip_percentage)/100
-	return tip
+	return '{:.2f}'.format(tip)
 
 if __name__ == '__main__':
 	app.run(debug=True)
