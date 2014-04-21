@@ -1,18 +1,29 @@
-from flask import Flask, render_template, redirect, url_for,request
+from flask import Flask, render_template, redirect, url_for,request, flash
 from forms import CalculatorForm
 
 app = Flask(__name__)
+app.config['CSRF_ENABLED'] = True
+app.config['SECRET_KEY'] = 'abc123'
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def home():
 	form = CalculatorForm()
-	if request.method == 'POST' and form.validate():
+	if request.method == 'POST' and form.validate_on_submit():
+
+		flash('submitted tip calculator fields Meal Cost="' + form.meal_cost.data + '" Tip Percentage="' + form.tip_percentage.data)
+		
 		return redirect(url_for('results'))
+
 	return render_template('home.html', form = form)
 
-@app.route('/results', methods=['POST'])
+@app.route('/results', methods=['GET','POST'])
 def results():
 	return render_template('results.html')
+
+def calculate_tip(base_cost, tip_percentage):
+
+	tip = float(base_cost) * float(tip_percentage)/100
+	return tip
 
 if __name__ == '__main__':
 	app.run(debug=True)
