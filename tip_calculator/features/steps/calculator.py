@@ -35,3 +35,8 @@ def step_impl(context):
 	p = br.text
 	assert "$6.00" in p
 
+@when('I submit the form with an invalid total/tip percentage')
+	assert False
+
+@then('I should be prompted to re-enter the tip percentage/meal cost')
+	assert False
