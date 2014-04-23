@@ -14,7 +14,7 @@ def home():
 @app.route('/results', methods=['GET','POST'])
 def results():
 
-	form = CalculatorForm()
+	form = CalculatorForm(request.form)
 
 	if request.method == 'POST' and form.validate_on_submit():
 
