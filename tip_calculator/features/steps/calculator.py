@@ -36,7 +36,15 @@ def step_impl(context):
 	assert "$6.00" in p
 
 @when('I submit the form with an invalid total/tip percentage')
-	assert False
+def step_impl(context):
+	br = context.browser
+	br.get('http://localhost:5000')
+	meal_cost = br.find_element_by_name("meal_cost")
+	meal_cost.send_keys("-30")
+	tip_percentage = br.find_element_by_name("tip_percentage")
+	tip_percentage.send_keys("101")
+	br.find_element_by_id("submit").click()
 
 @then('I should be prompted to re-enter the tip percentage/meal cost')
+def step_impl(cont):
 	assert False
