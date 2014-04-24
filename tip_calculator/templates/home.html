@@ -1,20 +1,20 @@
 {% extends "layout.html" %} {% block content %}
 
-<form action="{{ url_for('results')}}" method=post>
+<form action="{{url_for('results')}}" method=post>
 	{{form.hidden_tag()}}
     
     <div name="form_field">
         <label for="meal_cost">Meal cost:</label>
         {{form.meal_cost}}
         {% for error in form.errors.meal_cost %}
-    		<span style="color:red;">{{error}}</span>
+    		<span id="error-mealcost" style="color:red;">{{error}}</span>
     	{% endfor %} <br>
     </div>
     <div name="form_field">
         <label for="tip_percentage">Tip percentage:</label>
         {{form.tip_percentage}}
         {% for error in form.errors.tip_percentage %}
-    		<span style="color:red;">{{error}}</span>
+    		<span id="error-tip-percentage"style="color:red;">{{error}}</span>
     	{% endfor %} <br>
 
     </div>

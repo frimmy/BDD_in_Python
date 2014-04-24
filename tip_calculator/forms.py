@@ -1,10 +1,10 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, DecimalField
-from wtforms.validators import InputRequired, NumberRange, Required
-
+from wtforms import TextField
+from wtforms import validators #InputRequired, NumberRange, Required
+from wtforms.fields import DecimalField
 class CalculatorForm(Form):
 
-	meal_cost = DecimalField('meal_cost', [Required()]) #, InputRequired('This field must be filled out.')
-	tip_percentage = DecimalField('tip_percentage', [Required()]) # , InputRequired('This field must be filled out.')
+	meal_cost = DecimalField('meal_cost', validators=[validators.InputRequired("This field is required"), validators.NumberRange(min=0)], places=2) 
+	tip_percentage = DecimalField('tip_percentage', validators=[validators.InputRequired("This field is required"), validators.NumberRange(min=0, max=100)], places=2)
 
 	

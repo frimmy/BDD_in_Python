@@ -16,8 +16,8 @@ Feature: Confirming that the tip calculator form works
 		And see the valid total and tip percentage on the results page
 		And see the valid tip on the results page 
 
-	Scenario: Check that negative percentages are not calculated
+	Scenario: Check that negative amounts are not calculated
 		When I go to the tip calculator
-		And I submit the form with an invalid total/tip percentage
-		Then I should see the calculator form
-		And I should be prompted to re-enter the tip percentage
+		And I submit the form with a negative total/tip percentage
+		Then I should see the calculator form 
+		And I should see value errors displayed 
