@@ -45,11 +45,23 @@ def step_impl(context):
 	tip_percentage.send_keys("-20")
 	br.find_element_by_id("submit").click()
 
-@then('I should see value errors displayed')
+@then('I should see range errors displayed')
 def step_impl(context):
 	br = context.browser
-	meal_cost_error = br.find_element_by_id("error-mealcost")
-	tip_percentage_error = br.find_element_by_id("error-tip-percentage")
+	
+	errs = br.find_elements_by_class_name("field-error")
 
-	for i in [meal_cost_error, tip_percentage_error]:
-		assert "Number must be" in i.text
+	for i in errs:
+		assert "Number must be " in i.text
+	
+
+
+@when('I submit the form with a tip percentage over 100%')
+def step_impl(context):
+	br = context.browser
+	br.get('http://localhost:5000')
+	meal_cost = br.find_element_by_name("meal_cost")
+	meal_cost.send_keys("30")
+	tip_percentage = br.find_element_by_name("tip_percentage")
+	tip_percentage.send_keys("101")
+	br.find_element_by_id("submit").click()

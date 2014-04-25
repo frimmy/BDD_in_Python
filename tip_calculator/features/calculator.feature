@@ -20,4 +20,10 @@ Feature: Confirming that the tip calculator form works
 		When I go to the tip calculator
 		And I submit the form with a negative total/tip percentage
 		Then I should see the calculator form 
-		And I should see value errors displayed 
+		And I should see range errors displayed
+
+	Scenario: Check that percentage over 100% are not calculated
+		When I go to the tip calculator
+		And I submit the form with a tip percentage over 100%
+		Then I should see the calculator form
+		And I should see range errors displayed
