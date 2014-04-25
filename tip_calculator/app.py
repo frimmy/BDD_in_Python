@@ -8,11 +8,6 @@ app.config['SECRET_KEY'] = 'abc123'
 @app.route('/', methods=['GET','POST'])
 def home():
 	form = CalculatorForm()
-	mealdata = None
-
-	#if request.method == 'POST' and form.validate_on_submit():
-
-	#	return redirect(url_for('results'))
 
 	return render_template('home.html', form=form)	
 
