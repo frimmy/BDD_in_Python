@@ -14,7 +14,7 @@ def step_impl(context):
 	meal_cost.send_keys("30")
 	tip_percentage = br.find_element_by_name("tip_percentage")
 	tip_percentage.send_keys("20")
-	br.find_element_by_id("submit").click()
+	tip_percentage.submit()
 
 @then('I should see the results page')
 def step_impl(context):
